@@ -107,19 +107,24 @@ class CoursesModelusers extends JModelList
 		$query->from('`#__courses_users` AS a');
 
 
-            // Join over the users for the checked out user.
-            $query->select('uc.name AS editor');
-            $query->join('LEFT', '#__users AS uc ON uc.id=a.checked_out');
-            
+        // Join over the users for the checked out user.
+        $query->select('uc.name AS editor');
+        $query->join('LEFT', '#__users AS uc ON uc.id=a.user');
 
 
-            // Filter by published state
-            $published = $this->getState('filter.state');
-            if (is_numeric($published)) {
-                $query->where('a.state = '.(int) $published);
-            } else if ($published === '') {
-                $query->where('(a.state IN (0, 1))');
-            }
+        // Join over the users for the checked out user.
+        $query->select('c.title AS coursename');
+        $query->join('LEFT', '#__courses AS c ON c.id=a.id_course');
+
+
+
+        // Filter by published state
+        $published = $this->getState('filter.state');
+        if (is_numeric($published)) {
+            $query->where('a.state = '.(int) $published);
+        } else if ($published === '') {
+            $query->where('(a.state IN (0, 1))');
+        }
             
 
 		// Filter by search in title

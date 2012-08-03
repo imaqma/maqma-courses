@@ -112,35 +112,16 @@ $saveOrder	= $listOrder == 'a.ordering';
 				</td>
 
 				<td>
-					<?php echo $item->id_course; ?>
+					<?php echo $item->coursename; ?>
 				</td>
 				<td>
-					<?php echo $item->user; ?>
+					<?php echo $item->editor; ?>
 				</td>
 
 
                 <?php if (isset($this->items[0]->state)) { ?>
 				    <td class="center">
 					    <?php echo JHtml::_('jgrid.published', $item->state, $i, 'users.', $canChange, 'cb'); ?>
-				    </td>
-                <?php } ?>
-                <?php if (isset($this->items[0]->ordering)) { ?>
-				    <td class="order">
-					    <?php if ($canChange) : ?>
-						    <?php if ($saveOrder) :?>
-							    <?php if ($listDirn == 'asc') : ?>
-								    <span><?php echo $this->pagination->orderUpIcon($i, true, 'users.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								    <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'users.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-							    <?php elseif ($listDirn == 'desc') : ?>
-								    <span><?php echo $this->pagination->orderUpIcon($i, true, 'users.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								    <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'users.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-							    <?php endif; ?>
-						    <?php endif; ?>
-						    <?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
-						    <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" <?php echo $disabled ?> class="text-area-order" />
-					    <?php else : ?>
-						    <?php echo $item->ordering; ?>
-					    <?php endif; ?>
 				    </td>
                 <?php } ?>
                 <?php if (isset($this->items[0]->id)) { ?>
